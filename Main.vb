@@ -53,8 +53,13 @@ Public Class Main
         If My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\JipsSoft\Dateticker", "StartDate", Nothing) Is Nothing Then
             ' Key Missing
             'Create key  --   WORKING
-            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\JipsSoft\Dateticker", "StartDate", "01/01/2000")
+
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\JipsSoft\Dateticker", "StartDate", "01/01/1900")
             'Me.ForeColor = Color.Red
+
+            'Load the Form For User to set Date
+            Form1.Show()
+
         Else
             ' Key existed
             My.Computer.Registry.CurrentUser.GetValue("HKEY_CURRENT_USER\Software\JipsSoft\Dateticker")

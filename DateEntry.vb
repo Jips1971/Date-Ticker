@@ -1,7 +1,7 @@
 ﻿Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim pulleddate As Date = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\JipsSoft\Dateticker", "StartDate", Nothing)
-        Dim newdate As Date = "01/01/2000"
+        Dim newdate As Date = "01/01/1900"
         DateTimePicker1.Value = pulleddate
         'Make Topmost above other apps
         Top = 0
