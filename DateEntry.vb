@@ -28,4 +28,6 @@
         My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\JipsSoft\Dateticker", "StartDate", DateTimePicker1.Value)
         Me.Dispose()
     End Sub
+
+
 End Class
