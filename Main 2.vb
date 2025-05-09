@@ -8,7 +8,6 @@ Public Class Main
     Dim MOVEMINUS As Boolean = False
     Dim WorkPrinter As String = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\JipsSoft\Dateticker", "WorkPrinter", Nothing)
     Dim HomePrinter As String = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\JipsSoft\Dateticker", "HomePrinter", Nothing)
-    Dim Timer_Counter As Integer = 0
 
 
 
@@ -86,22 +85,37 @@ Public Class Main
             SetLabelColors(Color.White)
             PrinterName = WorkPrinter
 
+
+
+
+
+
+
+
             Try
                 Shell(String.Format("rundll32 printui.dll,PrintUIEntry /y /n ""{0}""", WorkPrinter))
             Catch ex As Exception
                 MsgBox("Printer Incorrect")
             End Try
 
-            'Try
-            'If File.Exists("C:\Windows\System32\Drivers\Etc\hostsWork") Then
-            'My.Computer.FileSystem.CopyFile("C:\Windows\System32\Drivers\Etc\hostsWork", "C:\Windows\System32\Drivers\Etc\hosts", True)
-            'End If
-            'Catch ex As Exception
-            'End Try
+
+
+
+
+
+
+
 
             Try
-                If File.Exists("C:\Users\30044908\OneDrive - Yokogawa Electric Corporation\Apps\James\caffine64.exe") Then
-                    Process.Start("C:\Users\30044908\OneDrive - Yokogawa Electric Corporation\Apps\James\caffine64.exe", "-replace -useshiftr -appoff")
+                If File.Exists("C:\Windows\System32\Drivers\Etc\hostsWork") Then
+                    My.Computer.FileSystem.CopyFile("C:\Windows\System32\Drivers\Etc\hostsWork", "C:\Windows\System32\Drivers\Etc\hosts", True)
+                End If
+            Catch ex As Exception
+            End Try
+
+            Try
+                If File.Exists("C:\Users\30044908\iCloudDrive\Apps\James\caffine64.exe") Then
+                    Process.Start("C:\Users\30044908\iCloudDrive\Apps\James\caffine64.exe", "-replace -useshiftr -appoff")
 
                 End If
             Catch ex As Exception
@@ -114,8 +128,8 @@ Public Class Main
 
 
 
-                'Home
-                If ipaddress.Substring(0, 3) = "192" Then
+        'Home
+        If ipaddress.Substring(0, 3) = "192" Then
             Location = "Home"
 
 
@@ -130,19 +144,20 @@ Public Class Main
             End Try
 
 
-            'Try
-            'If File.Exists("C:\Windows\System32\Drivers\Etc\hostsHome") Then
-            'My.Computer.FileSystem.CopyFile("C:\Windows\System32\Drivers\Etc\hostsHome", "C:\Windows\System32\Drivers\Etc\hosts", True)
+            Try
+                If File.Exists("C:\Windows\System32\Drivers\Etc\hostsHome") Then
+                    My.Computer.FileSystem.CopyFile("C:\Windows\System32\Drivers\Etc\hostsHome", "C:\Windows\System32\Drivers\Etc\hosts", True)
 
-            'End If
-            'Catch ex As Exception
-            'End Try
+                End If
+            Catch ex As Exception
+            End Try
 
 
 
             Try
-                If File.Exists("C:\Users\30044908\OneDrive - Yokogawa Electric Corporation\Apps\James\caffine64.exe") Then
-                    Process.Start("C:\Users\30044908\OneDrive - Yokogawa Electric Corporation\Apps\James\caffine64.exe", "-replace -useshiftr")
+                If File.Exists("C:\Users\30044908\iCloudDrive\Apps\James\caffine64.exe") Then
+                    Process.Start("C:\Users\30044908\iCloudDrive\Apps\James\caffine64.exe", "-replace -useshiftr")
+
                 End If
             Catch ex As Exception
             End Try
@@ -161,7 +176,7 @@ Public Class Main
 
 
 
-                Label5.Text = "Location - " + Location + "    IP: " + ipaddress
+        Label5.Text = "Location - " + Location + " - IP: " + ipaddress
         Label6.Text = "Printer : " + PrinterName
     End Sub
 
@@ -228,7 +243,6 @@ Public Class Main
 
 
 
-
         Static SecondsCount As Integer 'Counts each second
         SecondsCount += 1 'Increment
         'Label5.Text = Decimal.Round(SecondsCount / 10)
@@ -262,21 +276,26 @@ Public Class Main
 
 
         Dim nowtime As Date = Now
+        Dim CETtime As System.DateTime = DateAndTime.TimeOfDay.AddHours(1)
+        Dim CHINAtime As System.DateTime = DateAndTime.TimeOfDay.AddHours(8)
         Dim datTim1 As Date = Date.Parse(date2Entered)
         Dim datTim2 As Date = Now
         Dim dateSpan = DateTimeSpan.CompareDates(datTim1, datTim2)
         'If all OK
         If ERRORFLAG = False Then Label9.Text = (dateSpan.Years.ToString() & " Years")
         If ERRORFLAG = False Then Label8.Text = (dateSpan.Months.ToString() & " Months")
-        If ERRORFLAG = False Then Label1.Text = (dateSpan.Days.ToString() & " Days     Current Time : " & DateTime.Now.ToString("HH:mm:ss"))
-        If ERRORFLAG = False Then Label7.Text = " CET : " & DateAdd("h", 1, DateTime.Now.ToString("HH:mm:ss"))
-        If ERRORFLAG = False Then Label10.Text = " China : " & DateAdd("h", 7, DateTime.Now.ToString("HH:mm:ss"))
+        If ERRORFLAG = False Then Label1.Text = (dateSpan.Days.ToString() & " Days")
+        If ERRORFLAG = False Then Label11.Text = "Current Time : " & nowtime
+        If ERRORFLAG = False Then Label7.Text = "CET : " & CETtime
+        If ERRORFLAG = False Then Label10.Text = "China : " & CHINAtime
 
         'If there is a problem
         If ERRORFLAG = True Then Label9.Text = ("ERROR IN REGISTRY")
         If ERRORFLAG = True Then Label8.Text = ("")
         If ERRORFLAG = True Then Label1.Text = ("")
-
+        If ERRORFLAG = True Then Label7.Text = ("")
+        If ERRORFLAG = True Then Label10.Text = ("")
+        If ERRORFLAG = True Then Label11.Text = ("")
     End Sub
 
     Public Structure DateTimeSpan
