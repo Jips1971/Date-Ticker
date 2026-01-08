@@ -113,6 +113,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CaffineLocationForm.Designer.vb">
+      <DependentUpon>CaffineLocationForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CaffineLocationForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DateEntry.Designer.vb">
       <DependentUpon>DateEntry.vb</DependentUpon>
     </Compile>
@@ -150,6 +156,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CaffineLocationForm.resx">
+      <DependentUpon>CaffineLocationForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DateEntry.resx">
       <DependentUpon>DateEntry.vb</DependentUpon>
     </EmbeddedResource>

@@ -8,9 +8,8 @@ Public Class Main
     Dim MOVEMINUS As Boolean = False
     Dim WorkPrinter As String = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\JipsSoft\Dateticker", "WorkPrinter", Nothing)
     Dim HomePrinter As String = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\JipsSoft\Dateticker", "HomePrinter", Nothing)
+    Dim CaffineLocation = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\JipsSoft\Dateticker", "CaffineLocation", Nothing)
     Dim Timer_Counter As Integer = 0
-
-
 
     Private WithEvents RefreshTimer As New Windows.Forms.Timer
 
@@ -100,8 +99,8 @@ Public Class Main
             'End Try
 
             Try
-                If File.Exists("C:\Users\30044908\OneDrive - Yokogawa Electric Corporation\Apps\James\caffine64.exe") Then
-                    Process.Start("C:\Users\30044908\OneDrive - Yokogawa Electric Corporation\Apps\James\caffine64.exe", "-replace -useshiftr -appoff")
+                If File.Exists(CaffineLocation) Then
+                    Process.Start(CaffineLocation, "-replace -useshiftr -appoff")
 
                 End If
             Catch ex As Exception
@@ -141,8 +140,8 @@ Public Class Main
 
 
             Try
-                If File.Exists("C:\Users\30044908\OneDrive - Yokogawa Electric Corporation\Apps\James\caffine64.exe") Then
-                    Process.Start("C:\Users\30044908\OneDrive - Yokogawa Electric Corporation\Apps\James\caffine64.exe", "-replace -useshiftr")
+                If File.Exists(CaffineLocation) Then
+                    Process.Start(CaffineLocation, "-replace -useshiftr")
                 End If
             Catch ex As Exception
             End Try
@@ -207,7 +206,11 @@ Public Class Main
             My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\JipsSoft\Dateticker", "HomePrinter", Nothing)
         End If
 
-
+        If My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\JipsSoft\Dateticker", "CaffineLocation", Nothing) Is Nothing Then
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\Software\JipsSoft\Dateticker", "CaffineLocation", "Not Set")
+        Else
+            My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\JipsSoft\Dateticker", "CaffineLocation", Nothing)
+        End If
 
 
     End Sub
@@ -405,9 +408,9 @@ Public Class Main
         Label9.ForeColor = color
     End Sub
 
-
-
-
+    Private Sub Label7_Click(sender As Object, e As EventArgs) Handles Label7.Click
+        CaffineLocationForm.Show()
+    End Sub
 End Class
 
 
