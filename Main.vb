@@ -114,8 +114,8 @@ Public Class Main
 
 
 
-                'Home
-                If ipaddress.Substring(0, 3) = "192" Then
+        'Home
+        If ipaddress.Substring(0, 3) = "192" Then
             Location = "Home"
 
 
@@ -161,7 +161,7 @@ Public Class Main
 
 
 
-                Label5.Text = "Location - " + Location + "    IP: " + ipaddress
+        Label5.Text = "Location - " + Location + "    IP: " + ipaddress
         Label6.Text = "Printer : " + PrinterName
     End Sub
 
